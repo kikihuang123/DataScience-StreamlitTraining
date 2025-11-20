@@ -5,7 +5,6 @@ with zipfile.ZipFile("MovieReview.csv.zip") as z:
     with z.open("MovieReview.csv") as f:
         df = pd.read_csv(f)
 
-display(df.head())
 print(df.shape)
 
 df = df.drop('sentiment', axis=1)
@@ -16,7 +15,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-nltk.download()
+nltk.download('punkt')
+nltk.download('punkt_tab') 
+nltk.download('stopwords')
 stop_words = stopwords.words('english')
 
 # Converts the unicode file to ascii
@@ -90,3 +91,11 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 model.fit(X, y, batch_size = 128, epochs=50)
 
 model.save("word2vec.h5") 
+
+import pickle
+
+with open("word2idx.pkl", "wb") as f:
+    pickle.dump(word2idx, f)
+
+with open("idx2word.pkl", "wb") as f:
+    pickle.dump(idx2word, f)
