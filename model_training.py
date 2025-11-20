@@ -1,6 +1,10 @@
 import pandas as pd
 
-df = pd.read_csv("MovieReview.csv")
+import zipfile
+with zipfile.ZipFile("train.csv.zip") as z:
+    with z.open("train.csv") as f:
+        df = pd.read_csv(f)
+
 display(df.head())
 print(df.shape)
 
