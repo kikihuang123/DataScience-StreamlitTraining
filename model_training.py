@@ -1,8 +1,8 @@
 import pandas as pd
 
 import zipfile
-with zipfile.ZipFile("train.csv.zip") as z:
-    with z.open("train.csv") as f:
+with zipfile.ZipFile("MovieReview.csv.zip") as z:
+    with z.open("MovieReview.csv") as f:
         df = pd.read_csv(f)
 
 display(df.head())
