@@ -3,7 +3,7 @@ import streamlit as st
 from tensorflow.keras.models import load_model
 st.title("Model Word2Vec")
 
-model.load_weights("word2vec.h5")
+model = load_model("word2vec.h5")
 vocab_size = model.output_shape[-1]              # 輸出維度
 embedding_dim = model.layers[0].output_dim       # 第一層 Embedding 的維度
 vectors = model.layers[0].trainable_weights[0].numpy()
