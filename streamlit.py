@@ -1,17 +1,11 @@
 import streamlit as st
-from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Embedding, Dense, GlobalAveragePooling1D
 
+from tensorflow.keras.models import load_model
 st.title("Model Word2Vec")
 
-embedding_dim = 300
-model = Sequential()
-model.add(Embedding(vocab_size, embedding_dim))
-model.add(GlobalAveragePooling1D())
-model.add(Dense(vocab_size, activation='softmax'))
-
 model.load_weights("word2vec.h5")
-
+vocab_size = model.output_shape[-1]              # 輸出維度
+embedding_dim = model.layers[0].output_dim       # 第一層 Embedding 的維度
 vectors = model.layers[0].trainable_weights[0].numpy()
 import numpy as np
 from sklearn.preprocessing import Normalizer
